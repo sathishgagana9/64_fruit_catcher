@@ -33,3 +33,23 @@ class Fruit:
         center = (int(self.x), int(self.y))
         pygame.draw.circle(surface, self.color, center, self.radius)
         pygame.draw.circle(surface, (255, 255, 255), (int(self.x - 4), int(self.y - 4)), 3)
+
+
+class Hazard(Fruit):
+    def render(self, surface):
+        center = (int(self.x), int(self.y))
+        pygame.draw.circle(surface, (35, 38, 45), center, self.radius)
+        pygame.draw.circle(surface, (230, 65, 55), center, self.radius, 2)
+        pygame.draw.line(
+            surface,
+            (245, 170, 55),
+            (center[0], center[1] - self.radius + 2),
+            (center[0] + 6, center[1] - self.radius - 6),
+            3,
+        )
+        pygame.draw.circle(
+            surface,
+            (255, 210, 70),
+            (center[0] + 6, center[1] - self.radius - 6),
+            3,
+        )
