@@ -2,12 +2,12 @@ import random
 import pygame
 
 class Fruit:
-    def __init__(self, screen_width):
+    def __init__(self, screen_width, speed_bonus=0.0):
         self.screen_width = screen_width
         self.radius = 14
         self.x = random.randint(30, screen_width - 30)
         self.y = -self.radius * 2
-        self.speed = random.uniform(4.0, 6.5)
+        self.speed = random.uniform(4.0 + speed_bonus, 6.5 + speed_bonus)
         self.color = random.choice([
             (230, 45, 45),   # Apple
             (245, 140, 30),  # Orange

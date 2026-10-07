@@ -34,10 +34,12 @@ class GameEngine:
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.basket.move_right()
 
+        self.spawn_delay = max(400, 750 - self.score * 7)
+        speed_bonus = min(1.5, self.score * 0.03)
         now = pygame.time.get_ticks()
         if now - self.last_spawn_time >= self.spawn_delay:
             item_type = Hazard if random.random() < 0.15 else Fruit
-            self.fruits.append(item_type(self.width))
+            self.fruits.append(item_type(self.width, speed_bonus))
             self.last_spawn_time = now
 
         basket_rect = self.basket.rect
@@ -70,6 +72,7 @@ class GameEngine:
         self.fruits.clear()
         self.score = 0
         self.lives = 3
+        self.spawn_delay = 750
         self.last_spawn_time = pygame.time.get_ticks()
         self.game_state = "PLAYING"
 
